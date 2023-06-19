@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                              *
@@ -6,7 +9,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math     *
  *                                                                                           *
  ******************************************************************************************* */
-
 
 /**
  * Returns an area of a rectangle given by width and height.
@@ -19,10 +21,9 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
-
 
 /**
  * Returns a circumference of circle given by radius.
@@ -35,8 +36,8 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
 }
 
 /**
@@ -51,10 +52,17 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
+function getAverage(value1, value2) {
+  // const arr = [value1, value2];
+  // eslint-disable-next-line prefer-arrow-callback, func-names, prefer-const, valid-typeof
+  // if (typeof value1 === Infinity && typeof value2 === Infinity) {
+  //   return value1 / 2 + value2 / 2 + ((value1 % 2) + (value2 % 2)) / 2;
+  // }
+  // return arr.reduce((x, y) => x + y) / arr.length;
   throw new Error('Not implemented');
 }
-
+// eslint-disable-next-line no-console
+// console.log(getAverage(Number.MAX_VALUE - 2, Number.MAX_VALUE));
 /**
  * Returns a distance between two points by cartesian coordinates.
  *
@@ -90,7 +98,6 @@ function getLinearEquationRoot(/* a, b */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Returns an angle (in radians) between two vectors given by xi and yi,
  * coordinates in Cartesian plane.
@@ -125,10 +132,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  return String(value).slice(-1);
 }
-
 
 /**
  * Returns a number by given string representation.
@@ -141,8 +147,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return +value;
 }
 
 /**
@@ -158,10 +164,12 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  // eslint-disable-next-line no-restricted-properties
+  const sum = Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2);
+  // eslint-disable-next-line no-restricted-properties
+  return Math.sqrt(sum);
 }
-
 
 /**
  * Returns the number rounded to specified power of 10.
@@ -180,8 +188,9 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  // eslint-disable-next-line no-console, no-restricted-properties
+  return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
 }
 
 /**
@@ -201,8 +210,16 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+// eslint-disable-next-line consistent-return
+function isPrime(n) {
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(n) || !isFinite(n) || n % 1 || n < 2) return false;
+  if (n % 2 === 0) return n === 2;
+  const m = Math.sqrt(n);
+  for (let i = 3; i <= m; i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 /**
@@ -220,8 +237,10 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  value = parseInt(value, 10);
+  // eslint-disable-next-line no-restricted-globals
+  return isNaN(value) ? def : value;
 }
 
 module.exports = {
