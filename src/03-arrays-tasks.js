@@ -305,18 +305,17 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
+// eslint-disable-next-line consistent-return
 function propagateItemsByPositionIndex(arr) {
-  const newArr = [];
-  // eslint-disable-next-line array-callback-return, no-plusplus
-  for (let i = 0; i < arr.length; i++) {
-    if (i % 2 !== 0) {
-      newArr.push(i);
-    }
-  }
-  return newArr;
+  if (arr.length === 0 || arr.length === 1) return arr;
+  return arr.reduce((acc, v, i) => {
+    acc.push(...Array(i + 1).fill(v));
+    return acc;
+  }, []);
 }
+
 // eslint-disable-next-line no-console
-console.log(propagateItemsByPositionIndex([1, 2, 3, 4, 5]));
+// console.log(propagateItemsByPositionIndex([1, 2, 3, 4, null]));
 /**
  * Returns the 3 largest numbers from the specified array
  *
@@ -380,10 +379,17 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+// eslint-disable-next-line consistent-return
+function getItemsSum(arr) {
+  if (arr.length === 0 || arr.length === 1) return 0;
+  // eslint-disable-next-line no-param-reassign, arrow-body-style
+  return arr.reduce((acc, elem) => {
+    // eslint-disable-next-line no-return-assign, no-param-reassign
+    return acc += elem;
+  });
 }
-
+// eslint-disable-next-line no-console
+// console.log(getItemsSum([1, 2, 3]));
 /**
  * Returns the number of all falsy value in the specified array
  *
